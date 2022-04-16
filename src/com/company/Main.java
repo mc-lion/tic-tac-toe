@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
@@ -8,6 +9,7 @@ public class Main {
         Play desk = new Play();
         desk.initDesk();
         while(true){
+            desk.goAI();
             desk.draw();
             desk.getHop();
         }
@@ -59,7 +61,7 @@ class Play {
             x = toInt(hod[0]);
             y = toInt(hod[1]);
             if ((x != -1) & (y != -1)) {
-                if (desk[x][y] != " 2"){
+                if (desk[x][y] != " "){
                     System.out.println("error, alrady busy");
                 } else break;
             } else {
@@ -67,6 +69,19 @@ class Play {
             }
         }
         desk[x][y] = "x";
+    }
+
+    public void goAI(){
+        int max=2;
+        int min=0;
+        int x,y;
+        while(true){
+            x = (int)(Math.random() * ((max - min) + 1)) + min;
+            y = (int)(Math.random() * ((max - min) + 1)) + min;
+            System.out.println(x + " " + y);
+            if(desk[x][y] == " ") break;
+        }
+        desk[x][y] = "0";
     }
 
     public void draw(){
