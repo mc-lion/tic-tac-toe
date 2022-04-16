@@ -57,7 +57,7 @@ class Play {
         int x,y;
         while (true) {
             Scanner in = new Scanner(System.in);
-            System.out.print("Input (x y): ");
+            System.out.print("Input (y x): ");
             String hop = in.nextLine();
             hop += " 4 4";  // fix if enter one or none
             String[] hod = hop.split(" ");
@@ -81,7 +81,7 @@ class Play {
         while(true){
             x = (int)(Math.random() * ((max - min) + 1)) + min;
             y = (int)(Math.random() * ((max - min) + 1)) + min;
-            System.out.println(x + " " + y);
+            //System.out.println(x + " " + y);
             if(desk[x][y] == " ") break;
         }
         desk[x][y] = "0";
@@ -101,7 +101,7 @@ class Play {
 
     public void checkWin(String simvol){
         int x,y;
-        // on vertikal
+        // on horizontal
         for(x=0;x<max_desk;x++){
             boolean flag=true;
             for(y=0;y<max_desk;y++){
@@ -110,11 +110,11 @@ class Play {
                }
             }
             if (flag){
-                System.out.println("Win!");
+                System.out.println(simvol + " - Win! (hor)");
                 System.exit(0);
             }
         }
-        // on horizontal
+        // on vertikal
         for(y=0;y<max_desk;y++){
             boolean flag=true;
             for(x=0;x<max_desk;x++){
@@ -123,7 +123,29 @@ class Play {
                 }
             }
             if (flag){
-                System.out.println(simvol + " - Win!");
+                System.out.println(simvol + " - Win! (ver)");
+                System.exit(0);
+            }
+        }
+        // on diagonal x=y
+        for(y=0;y<max_desk;y++){
+            boolean flag=true;
+            if(desk[y][y] != simvol){
+                flag = false;
+            }
+            if (flag){
+                System.out.println(simvol + " - Win! (diag x=y)");
+                System.exit(0);
+            }
+        }
+        // on diagonal x=max-y
+        for(y=0;y<max_desk;y++){
+            boolean flag=true;
+            if(desk[max_desk-y][y] != simvol){
+                flag = false;
+            }
+            if (flag){
+                System.out.println(simvol + " - Win! (diag x=max-y)");
                 System.exit(0);
             }
         }
