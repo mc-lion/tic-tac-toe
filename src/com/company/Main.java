@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class Main {
 
@@ -24,8 +23,8 @@ class Play {
 
     private static final int max_desk = 3;
 
-    private String[][] desk = new String[max_desk][max_desk];
-    private int[][] brain = new int[max_desk][max_desk];
+    private final String[][] desk = new String[max_desk][max_desk];
+//    private final int[][] brain = new int[max_desk][max_desk];
 
     public void initDesk(){
         for(int x = 0; x<max_desk; x++){
@@ -34,11 +33,11 @@ class Play {
             }
         }
 
-        brain[0][0] = 1;
-        brain[0][2] = 1;
-        brain[2][0] = 1;
-        brain[2][2] = 1;
-        brain[1][1] = 2;
+//        brain[0][0] = 1;
+//        brain[0][2] = 1;
+//        brain[2][0] = 1;
+//        brain[2][2] = 1;
+//        brain[1][1] = 2;
     }
 
     private static int toInt(String str){
@@ -53,7 +52,6 @@ class Play {
     }
 
     public void getHop() {
-        boolean flag = true;
         int x,y;
         while (true) {
             Scanner in = new Scanner(System.in);
@@ -64,7 +62,7 @@ class Play {
             x = toInt(hod[0]);
             y = toInt(hod[1]);
             if ((x != -1) & (y != -1)) {
-                if (desk[x][y] != " "){
+                if (!desk[x][y].equals(" ")){
                     System.out.println("error, alrady busy");
                 } else break;
             } else {
@@ -78,12 +76,10 @@ class Play {
         int max=2;
         int min=0;
         int x,y;
-        while(true){
-            x = (int)(Math.random() * ((max - min) + 1)) + min;
-            y = (int)(Math.random() * ((max - min) + 1)) + min;
-            //System.out.println(x + " " + y);
-            if(desk[x][y] == " ") break;
-        }
+        do {
+            x = (int) (Math.random() * ((max - min) + 1)) + min;
+            y = (int) (Math.random() * ((max - min) + 1)) + min;
+        } while (!desk[x][y].equals(" "));
         desk[x][y] = "0";
     }
 
@@ -114,7 +110,7 @@ class Play {
         for(x=0;x<max_desk;x++){
             boolean flag=true;
             for(y=0;y<max_desk;y++){
-               if(desk[x][y] != simvol){
+               if(!desk[x][y].equals(simvol)){
                    flag = false;
                }
             }
@@ -127,7 +123,7 @@ class Play {
         for(y=0;y<max_desk;y++){
             boolean flag=true;
             for(x=0;x<max_desk;x++){
-                if(desk[x][y] != simvol){
+                if(!desk[x][y].equals(simvol)){
                     flag = false;
                 }
             }
@@ -139,7 +135,7 @@ class Play {
         // on diagonal x=y
         boolean flag=true;
         for(y=0;y<max_desk;y++){
-            if(desk[y][y] != simvol){
+            if(!desk[y][y].equals(simvol)){
                 flag = false;
             }
         }
@@ -150,7 +146,7 @@ class Play {
         // on diagonal x=max-y
         flag=true;
         for(y=0;y<max_desk;y++){
-            if(desk[max_desk-y-1][y] != simvol){
+            if(!desk[max_desk - y - 1][y].equals(simvol)){
                 flag = false;
             }
         }
