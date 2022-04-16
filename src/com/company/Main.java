@@ -87,16 +87,25 @@ class Play {
         desk[x][y] = "0";
     }
 
+    private void driveLine(){
+        for(int i=0; i<max_desk;i++){
+            System.out.print("+-");
+        }
+        System.out.println("+");
+    }
+
     public void draw(){
         for (int x=0; x < max_desk; x++ ){
-            System.out.println("+-+-+-+");
+            //System.out.println("+-+-+-+");
+            driveLine();
             for (int y=0; y < max_desk; y++ ){
                 System.out.print("|");
                 System.out.print(desk[x][y]);
             }
             System.out.println("|");
         }
-        System.out.println("+-+-+-+");
+        //System.out.println("+-+-+-+");
+        driveLine();
     }
 
     public void checkWin(String simvol){
