@@ -141,7 +141,7 @@ class Play {
         // on diagonal x=max-y
         for(y=0;y<max_desk;y++){
             boolean flag=true;
-            if(desk[max_desk-y][y] != simvol){
+            if(desk[max_desk-y-1][y] != simvol){
                 flag = false;
             }
             if (flag){
