@@ -9,12 +9,12 @@ public class Main {
         Play desk = new Play();
         desk.initDesk();
         while(true){
-            desk.checkWin("0");
-            desk.checkWin("x");
             desk.goAI();
             desk.draw();
+            desk.checkWin("0");
             desk.getHop();
             desk.draw();
+            desk.checkWin("x");
         }
 
     }
@@ -128,26 +128,26 @@ class Play {
             }
         }
         // on diagonal x=y
+        boolean flag=true;
         for(y=0;y<max_desk;y++){
-            boolean flag=true;
             if(desk[y][y] != simvol){
                 flag = false;
             }
-            if (flag){
-                System.out.println(simvol + " - Win! (diag x=y)");
-                System.exit(0);
-            }
+        }
+        if (flag){
+            System.out.println(simvol + " - Win! (diag x=y)");
+            System.exit(0);
         }
         // on diagonal x=max-y
+        flag=true;
         for(y=0;y<max_desk;y++){
-            boolean flag=true;
             if(desk[max_desk-y-1][y] != simvol){
                 flag = false;
             }
-            if (flag){
-                System.out.println(simvol + " - Win! (diag x=max-y)");
-                System.exit(0);
-            }
+        }
+        if (flag){
+            System.out.println(simvol + " - Win! (diag x=max-y)");
+            System.exit(0);
         }
     }
 }
