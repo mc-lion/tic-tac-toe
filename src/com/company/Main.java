@@ -9,9 +9,12 @@ public class Main {
         Play desk = new Play();
         desk.initDesk();
         while(true){
+            desk.checkWin("0");
+            desk.checkWin("x");
             desk.goAI();
             desk.draw();
             desk.getHop();
+            desk.draw();
         }
 
     }
@@ -94,5 +97,35 @@ class Play {
             System.out.println("|");
         }
         System.out.println("+-+-+-+");
+    }
+
+    public void checkWin(String simvol){
+        int x,y;
+        // on vertikal
+        for(x=0;x<max_desk;x++){
+            boolean flag=true;
+            for(y=0;y<max_desk;y++){
+               if(desk[x][y] != simvol){
+                   flag = false;
+               }
+            }
+            if (flag){
+                System.out.println("Win!");
+                System.exit(0);
+            }
+        }
+        // on horizontal
+        for(y=0;y<max_desk;y++){
+            boolean flag=true;
+            for(x=0;x<max_desk;x++){
+                if(desk[x][y] != simvol){
+                    flag = false;
+                }
+            }
+            if (flag){
+                System.out.println(simvol + " - Win!");
+                System.exit(0);
+            }
+        }
     }
 }
